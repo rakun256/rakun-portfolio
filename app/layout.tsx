@@ -15,9 +15,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="fixed top-[-200px] left-[-150px] w-[400px] h-[400px] bg-blue-700 blur-intense rounded-full z-[-10] opacity-40" />
-        <div className="fixed bottom-[-150px] right-[-150px] w-[300px] h-[300px] bg-purple-700 blur-intense rounded-full z-[-10] opacity-30" />
-
         <Navbar />
         <main>{children}</main>
         <Footer />
