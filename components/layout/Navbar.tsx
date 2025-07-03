@@ -15,8 +15,8 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="w-full px-6 py-4 flex justify-center fixed top-0 z-50 bg-background/70 backdrop-blur-md">
-      <ul className="flex space-x-8 text-sm font-medium text-white ">
+    <nav className="w-full px-6 py-4 flex justify-center fixed top-0 z-50 bg-background/70 backdrop-blur-lg">
+      <ul className="flex space-x-8 text-sm md:text-lg  font-medium text-white ">
         {navItems.map((item) => (
           <li key={item.name}>
             <Link
