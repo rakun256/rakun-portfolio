@@ -3,6 +3,8 @@
 import Button from "../common/Button";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
+import CustomTypewriter from "../common/Typewriter";
+import typewriterWords from "../../data/typewriter.json";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,14 +45,14 @@ export default function Hero() {
         className="relative backdrop-blur-md bg-white/5 border border-white/30 py-16 px-6 sm:px-10 md:px-20 lg:px-40 rounded-2xl w-full max-w-3xl overflow-hidden group"
       >
         <motion.div
-          className="absolute w-60 h-60 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none bg-gradient-to-br from-[#6f00ff] via-[#a002a0] to-[#0876e4] opacity-30 blur-3xl group-hover:opacity-70 transition-opacity duration-300"
+          className="absolute w-60 h-60 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none bg-gradient-to-br from-[#6f00ff] via-[#a002a0] to-[#0876e4] opacity-30 blur-3xl group-hover:opacity-30 transition-opacity duration-300"
           style={{
             left: springX,
             top: springY,
           }}
         />
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 leading-tight relative z-10 hover:cursor-default">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal mb-4 leading-tight relative z-10 hover:cursor-default">
           Hi, I'm <br />
           <span className="relative inline-block font-bold transition-all duration-500 group">
             <span className="text-white md:group-hover:text-transparent md:group-hover:bg-gradient-to-r md:group-hover:from-blue-400 md:group-hover:via-cyan-400 md:group-hover:to-pink-500 md:group-hover:bg-clip-text transition-all duration-500 bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 bg-clip-text text-transparent md:text-white">
@@ -61,9 +63,10 @@ export default function Hero() {
             </span>
           </span>
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-white/70 mb-10 sm:mb-16 relative z-10 hover:cursor-default">
+        <p className="text-base sm:text-lg md:text-xl text-white/70 mb-10 relative z-10 hover:cursor-default">
           Frontend & Mobile Developer
         </p>
+        <div className="relative mb-16"><CustomTypewriter words={typewriterWords} /></div>
         <div className="relative z-10">
           <Button label="See My Work" href="#projects" />
         </div>
