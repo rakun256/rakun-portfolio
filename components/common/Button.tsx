@@ -7,7 +7,7 @@ type Props = {
 
 export default function Button({ label, onClick, className = "", href }: Props) {
   const baseStyle =
-    "px-6 py-3 rounded-xl text-white font-medium border border-white/20 backdrop-blur-md bg-white/5 hover:bg-white/10 transition";
+    "px-6 py-3 rounded-xl text-white font-medium border border-white/30 backdrop-blur-md bg-white/5 hover:bg-white/20 hover:border-white/40 transition";
 
   if (href) {
     return (

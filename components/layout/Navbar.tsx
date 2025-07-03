@@ -16,13 +16,13 @@ export default function Navbar() {
 
   return (
     <nav className="w-full px-6 py-4 flex justify-center fixed top-0 z-50 bg-background/70 backdrop-blur-md">
-      <ul className="flex space-x-8 text-sm font-medium text-white">
+      <ul className="flex space-x-8 text-sm font-medium text-white ">
         {navItems.map((item) => (
           <li key={item.name}>
             <Link
               href={item.href}
               className={cn(
-                'transition-colors duration-200 hover:text-accent',
+                'hover:text-[#c6fbfd] transition-colors duration-300',
                 pathname === item.href && 'text-accent border-b-2 border-accent pb-1'
               )}
             >
