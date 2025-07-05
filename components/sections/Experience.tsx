@@ -47,7 +47,10 @@ export default function ExperienceSection() {
         transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
         className="hidden md:flex flex-1 flex-col w-full items-center justify-center gap-12 px-4"
       >
-        <HorizontalTimeline activeIndex={activeIndex} />
+        <HorizontalTimeline 
+          activeIndex={activeIndex} 
+          onTimelineClick={setActiveIndex}
+        />
 
         <div className="relative w-full max-w-2xl flex items-center justify-center">
           <button

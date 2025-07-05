@@ -1,77 +1,153 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { timeline } from "@/data/timeline";
 import clsx from "clsx";
 
 interface HorizontalTimelineProps {
   activeIndex: number;
+  onTimelineClick?: (index: number) => void;
 }
 
-export default function HorizontalTimeline({
-  activeIndex,
-}: HorizontalTimelineProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export default function HorizontalTimeline({ activeIndex, onTimelineClick }: HorizontalTimelineProps) {
   const [progressWidth, setProgressWidth] = useState("0%");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const progress = (activeIndex / (timeline.length - 1)) * 100;
-    setProgressWidth(`${progress}%`);
+    // Ensure we handle edge cases properly
+    if (timeline.length <= 1) {
+      setProgressWidth("100%");
+      return;
+    }
+    
+    const pct = Math.max(0, Math.min(100, (activeIndex / (timeline.length - 1)) * 100));
+    setProgressWidth(`${pct}%`);
+
+    // Set CSS custom properties on the container
+    if (containerRef.current) {
+      containerRef.current.style.setProperty('--timeline-columns', `repeat(${timeline.length}, minmax(0, 1fr))`);
+      containerRef.current.style.setProperty('--progress-width', `${pct}%`);
+    }
   }, [activeIndex]);
 
+  const handleDotClick = (index: number) => {
+    if (onTimelineClick) {
+      onTimelineClick(index);
+    }
+  };
+
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full max-w-6xl mx-auto mb-12 h-32 flex items-center"
+    <div 
+      ref={containerRef} 
+      className="timeline-container relative w-full max-w-6xl mx-auto mb-12 px-4"
     >
-      {/* Arka plan çizgisi */}
-      <div className="absolute top-1/2 left-0 w-full h-1 bg-white/20 rounded-full transform -translate-y-1/2 z-0" />
+      {/* Timeline base line */}
+      <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-white/15 rounded-full"></div>
+      
+      {/* Progress line with improved animation */}
+      <div className="timeline-progress absolute top-1/2 left-4 h-0.5 bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 transition-all duration-1000 ease-out rounded-full" />
 
-      {/* Gradyan ilerleme çizgisi */}
-      <div
-        className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 rounded-full z-10 transition-all duration-700 ease-out"
-        style={{ width: progressWidth, transform: "translateY(-50%)" }}
-      />
-
-      {/* Noktalar ve bilgiler */}
-      <div className="flex justify-between w-full z-20">
-        {timeline.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center w-32 text-center"
-          >
-            {/* Nokta */}
-            <div
+      {/* Interactive dots */}
+      <div className="timeline-grid relative z-10 w-full px-4">
+        {timeline.map((_, i) => (
+          <div key={i} className="flex justify-center">
+            <button
+              onClick={() => handleDotClick(i)}
               className={clsx(
-                "w-4 h-4 rounded-full border-2 transition-all duration-700 ease-out mb-3 relative",
-                index <= activeIndex
-                  ? "bg-gradient-to-r from-blue-400 to-pink-500 border-transparent scale-125 shadow-lg shadow-pink-500/50 bg-no-repeat bg-cover"
-                  : "bg-white/20 border-white/40 hover:border-white/60"
+                "timeline-dot",
+                i <= activeIndex ? "timeline-dot-active" : "timeline-dot-inactive"
               )}
-            >
-              {/* Aktif nokta için pulsing efekti */}
-              {index === activeIndex && (
-                <div className="absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 animate-ping opacity-75" />
-              )}
-            </div>
-
-            {/* Bilgiler */}
-            <div
-              className={clsx(
-                "transition-all duration-500",
-                index === activeIndex
-                  ? "opacity-100 transform scale-105"
-                  : "opacity-70"
-              )}
-            >
-              <p className="text-sm text-white font-semibold leading-tight mb-1">
-                {item.title}
-              </p>
-              <p className="text-xs text-white/70 mb-1">{item.organization}</p>
-              <p className="text-[10px] text-white/50">{item.date}</p>
-            </div>
+              aria-label={`Go to ${timeline[i].title} at ${timeline[i].organization}`}
+              disabled={!onTimelineClick}
+            />
           </div>
         ))}
+      </div>
+
+      {/* Enhanced titles section */}
+      <div className="timeline-grid mt-6 w-full text-center px-4">
+        {timeline.map((item, i) => (
+          <div
+            key={i}
+            className={clsx(
+              "transition-all duration-500 px-1",
+              i === activeIndex 
+                ? "opacity-100 scale-105" 
+                : "opacity-50 hover:opacity-75"
+            )}
+          >
+            <p className={clsx(
+              "font-semibold leading-tight break-words",
+              timeline.length <= 3 ? "text-base md:text-lg" : "text-sm md:text-base"
+            )}>
+              {item.title}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Enhanced organization section */}
+      <div className="timeline-grid mt-3 w-full text-center px-4">
+        {timeline.map((item, i) => (
+          <div
+            key={i}
+            className={clsx(
+              "transition-all duration-500 px-1",
+              i === activeIndex 
+                ? "opacity-90 text-blue-300" 
+                : "opacity-50 text-white/70 hover:opacity-70"
+            )}
+          >
+            <p className={clsx(
+              "font-medium break-words",
+              timeline.length <= 3 ? "text-sm md:text-base" : "text-xs md:text-sm"
+            )}>
+              {item.organization}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Enhanced dates section */}
+      <div className="timeline-grid mt-2 w-full text-center px-4">
+        {timeline.map((item, i) => (
+          <div
+            key={i}
+            className={clsx(
+              "transition-all duration-500 px-1",
+              i === activeIndex 
+                ? "opacity-80 text-cyan-300" 
+                : "opacity-40 text-white/50 hover:opacity-60"
+            )}
+          >
+            <p className={clsx(
+              "font-light break-words",
+              timeline.length <= 3 ? "text-xs md:text-sm" : "text-[10px] md:text-xs"
+            )}>
+              {item.date}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile-friendly indicator */}
+      <div className="mt-4 flex justify-center md:hidden">
+        <div className="flex space-x-2">
+          {timeline.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => handleDotClick(i)}
+              className={clsx(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                i === activeIndex 
+                  ? "bg-gradient-to-r from-blue-400 to-pink-500 scale-125" 
+                  : "bg-white/30 hover:bg-white/50"
+              )}
+              aria-label={`Go to experience ${i + 1}`}
+              disabled={!onTimelineClick}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
