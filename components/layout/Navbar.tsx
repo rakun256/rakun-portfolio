@@ -40,7 +40,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className="w-full px-6 py-4 flex justify-between items-center fixed top-0 z-50 bg-background/70 backdrop-blur-md">
+    <nav className="w-full px-6 py-4 flex justify-between items-center fixed top-0 z-50 bg-background/70 backdrop-blur-sm">
       <span className="text-white font-bold text-base sm:text-lg">Emre Uslu</span>
       <ul className="hidden md:flex space-x-6 md:space-x-8 text-sm md:text-lg font-medium text-white">
         {navItems.map((item) => (
