@@ -25,7 +25,6 @@ export default function ExperienceSection() {
         <div className="absolute top-[0px] right-[100px] w-[200px] h-[100px] bg-[#00f2ff] rounded-full opacity-30 blur-[120px]" />
       </div>
 
-      {/* Başlık (reveal on scroll) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +40,6 @@ export default function ExperienceSection() {
         </h2>
       </motion.div>
 
-      {/* Desktop: timeline + kart + oklar (reveal on scroll) */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +50,6 @@ export default function ExperienceSection() {
         <HorizontalTimeline activeIndex={activeIndex} />
 
         <div className="relative w-full max-w-2xl flex items-center justify-center">
-          {/* Sol ok */}
           <button
             onClick={prev}
             disabled={activeIndex === 0}
@@ -62,7 +59,6 @@ export default function ExperienceSection() {
             <FiChevronLeft size={24} />
           </button>
 
-          {/* Card container */}
           <div className="w-full relative">
             <AnimatePresence mode="wait">
               <motion.div
@@ -84,7 +80,6 @@ export default function ExperienceSection() {
             </AnimatePresence>
           </div>
 
-          {/* Sağ ok */}
           <button
             onClick={next}
             disabled={activeIndex === timeline.length - 1}
@@ -96,7 +91,6 @@ export default function ExperienceSection() {
         </div>
       </motion.div>
 
-      {/* Mobile: dikey liste */}
       <div className="md:hidden w-full overflow-auto px-4 mt-8 pb-8">
         {timeline.map((item, idx) => (
           <div key={idx} className="mb-8 flex justify-center">

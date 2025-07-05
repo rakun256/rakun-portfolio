@@ -30,7 +30,7 @@ export default function Hero() {
   }, []);
 
   return (
-      <section className="min-h-screen flex flex-col justify-center items-center text-center relative px-4">
+      <section id="hero" className="min-h-screen flex flex-col justify-center items-center text-center relative px-4">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute top-[-200px] left-[-100px] w-[500px] h-[500px] bg-[#6f00ff] rounded-full opacity-40 blur-[150px]" />
           <div className="absolute bottom-[-150px] right-[-100px] w-[400px] h-[400px] bg-[#ff00ff] rounded-full opacity-30 blur-[120px]" />
