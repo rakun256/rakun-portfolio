@@ -28,5 +28,15 @@ export const timeline = [
       "Integrated REST APIs and built notification features.",
       "Participated in agile sprint planning and testing processes."
     ]
+  },
+  {
+    title: "Backend Developer Intern",
+    organization: "XYZ Corp",
+    date: "Mar 2025 – Present",
+    description: [
+      "Assisted in the development of RESTful APIs using Node.js and Express.",
+      "Worked with MongoDB for database management and data modeling.",
+      "Participated in code reviews and contributed to documentation."
+    ]
   }
 ];

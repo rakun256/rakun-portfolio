@@ -11,7 +11,7 @@ export default function AboutSection() {
   return (
     <SectionWrapper
       id="about"
-      className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 justify-center items-center flex"
+      className="relative min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 justify-center items-center flex overflow-y-visible"
     >
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute bottom-[-200px] left-[-100px] w-[500px] h-[500px] bg-[#6f00ff] rounded-full opacity-40 blur-[150px]" />
@@ -38,6 +38,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-white/80 text-base md:text-lg leading-relaxed mt-6 whitespace-pre-line text-align-left"
+          viewport={{ once: true }}
         >
           {about.description}
         </motion.p>
@@ -55,6 +56,7 @@ export default function AboutSection() {
           },
         }}
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+        viewport={{ once: true }}
       >
         {about.highlights.map((item, index) => {
           const Icon = item.icon;
@@ -65,12 +67,14 @@ export default function AboutSection() {
              bg-white/10 border border-white/30 backdrop-blur-md p-4 rounded-2xl 
              shadow-xl text-white/90 group transition-transform hover:scale-[1.03] 
              hover:shadow-2xl min-w-[240px] sm:min-w-[260px]"
+             viewport={{ once: true }}
             >
               <motion.div
                 className="absolute w-60 h-60 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none 
                bg-gradient-to-br from-[#6f00ff] via-[#a002a0] to-[#0876e4] opacity-0 
                blur-3xl group-hover:opacity-30 transition-opacity duration-300"
                 style={{ left: "50%", top: "50%" }}
+                viewport={{ once: true }}
               />
 
               <div className="flex justify-center items-center z-10 relative h-full gap-4">

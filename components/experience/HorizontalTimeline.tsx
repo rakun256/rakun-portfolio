@@ -8,7 +8,9 @@ interface HorizontalTimelineProps {
   activeIndex: number;
 }
 
-export default function HorizontalTimeline({ activeIndex }: HorizontalTimelineProps) {
+export default function HorizontalTimeline({
+  activeIndex,
+}: HorizontalTimelineProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [progressWidth, setProgressWidth] = useState("0%");
 
@@ -34,13 +36,16 @@ export default function HorizontalTimeline({ activeIndex }: HorizontalTimelinePr
       {/* Noktalar ve bilgiler */}
       <div className="flex justify-between w-full z-20">
         {timeline.map((item, index) => (
-          <div key={index} className="flex flex-col items-center w-32 text-center">
+          <div
+            key={index}
+            className="flex flex-col items-center w-32 text-center"
+          >
             {/* Nokta */}
             <div
               className={clsx(
                 "w-4 h-4 rounded-full border-2 transition-all duration-700 ease-out mb-3 relative",
                 index <= activeIndex
-                  ? "bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 border-transparent scale-125 shadow-lg shadow-cyan-400/50"
+                  ? "bg-gradient-to-r from-blue-400 to-pink-500 border-transparent scale-125 shadow-lg shadow-pink-500/50 bg-no-repeat bg-cover"
                   : "bg-white/20 border-white/40 hover:border-white/60"
               )}
             >
@@ -49,13 +54,19 @@ export default function HorizontalTimeline({ activeIndex }: HorizontalTimelinePr
                 <div className="absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-pink-500 animate-ping opacity-75" />
               )}
             </div>
-            
+
             {/* Bilgiler */}
-            <div className={clsx(
-              "transition-all duration-500",
-              index === activeIndex ? "opacity-100 transform scale-105" : "opacity-70"
-            )}>
-              <p className="text-sm text-white font-semibold leading-tight mb-1">{item.title}</p>
+            <div
+              className={clsx(
+                "transition-all duration-500",
+                index === activeIndex
+                  ? "opacity-100 transform scale-105"
+                  : "opacity-70"
+              )}
+            >
+              <p className="text-sm text-white font-semibold leading-tight mb-1">
+                {item.title}
+              </p>
               <p className="text-xs text-white/70 mb-1">{item.organization}</p>
               <p className="text-[10px] text-white/50">{item.date}</p>
             </div>
