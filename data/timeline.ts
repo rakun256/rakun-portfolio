@@ -34,9 +34,9 @@ export const timeline = [
     organization: "Doğuş Teknoloji",
     date: "July 2025 – Present",
     description: [
-      "Contribute to the development of TÜVTÜRK’s vehicle inspection appointment application, enhancing user experience and optimizing system performance.",
-      "Rotate through .NET web backend development using a microservices architecture, gaining hands-on experience with scalable enterprise solutions.",
-      "Strengthen full-stack skills by tackling both frontend and backend tasks, and actively participate in the design and delivery of user-centered digital services in the automotive and service technology sectors.",
+      "Contribute to the development of Hybee, an office planning application, focusing on enhancing user experience, optimizing performance, and delivering seamless workplace management features.",
+      "Rotate through .NET web backend development using a microservices architecture, gaining hands-on experience with scalable and maintainable enterprise solutions.",
+      "Strengthen full-stack development skills by working on both frontend and backend tasks, actively participating in the design and delivery of user-centered digital services in workplace management and service technology domains.",
     ],
   },
 ];

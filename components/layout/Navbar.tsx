@@ -58,7 +58,7 @@ export default function Navbar() {
             <button
               onClick={() => handleClick(item.href)}
               className={cn(
-                'hover:text-[#c6fbfd] transition-colors duration-300',
+                'hover:text-[#c6fbfd] transition-colors duration-300 cursor-pointer',
                 activeSection === item.href.slice(1)
                   ? 'text-accent border-b-2 border-accent pb-1'
                   : ''

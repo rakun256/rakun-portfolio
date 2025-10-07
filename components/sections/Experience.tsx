@@ -18,7 +18,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="relative h-screen w-full text-white flex flex-col items-center pt-20 overflow-y-visible"
+      className="relative min-h-screen w-full text-white flex flex-col items-center pt-20 overflow-y-visible"
     >
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-[-200px] left-[-100px] w-[500px] h-[500px] bg-[#6f00ff] rounded-full opacity-40 blur-[150px]" />
@@ -57,7 +57,7 @@ export default function ExperienceSection() {
             onClick={prev}
             disabled={activeIndex === 0}
             aria-label="Previous experience"
-            className="absolute left-[-8rem] top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 disabled:opacity-50 rounded-full transition z-10"
+            className="absolute left-[-8rem] top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 disabled:opacity-50 rounded-full transition z-10 cursor-pointer"
           >
             <FiChevronLeft size={24} />
           </button>
@@ -87,7 +87,7 @@ export default function ExperienceSection() {
             onClick={next}
             disabled={activeIndex === timeline.length - 1}
             aria-label="Next experience"
-            className="absolute right-[-8rem] top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 disabled:opacity-50 rounded-full transition z-10"
+            className="absolute right-[-8rem] top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 disabled:opacity-50 rounded-full transition z-10 cursor-pointer"
           >
             <FiChevronRight size={24} />
           </button>

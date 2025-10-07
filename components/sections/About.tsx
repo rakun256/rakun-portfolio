@@ -79,9 +79,9 @@ export default function AboutSection() {
 
               <div className="flex justify-center items-center z-10 relative h-full gap-4">
                 <Icon className="text-white/70 text-3xl group-hover:text-[#bd7bbd] transition-colors duration-300" />
-                <span className="text-sm font-medium leading-tight line-clamp-2 px-1">
+                <p className="text-sm font-medium leading-tight whitespace-pre-line px-1 text-left ">
                   {item.label}
-                </span>
+                </p>
               </div>
             </motion.div>
           );
